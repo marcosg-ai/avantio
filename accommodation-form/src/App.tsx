@@ -1,14 +1,39 @@
-import { useState } from "react";
 import "./App.css";
+// import { AccommodationStep } from "./steps/AccommodationSteps";
 
-import logo from "./assets/react.svg";
+// import logo from "./assets/react.svg";
 
-function App() {
-  const [count, setCount] = useState<number>(0);
+// import { useDispatch, useSelector } from "react-redux";
+// import { setStep } from "./redux/formSlice";
+import { Form } from "./components/Form";
+
+// interface RootState {
+//   form: {
+//     step: number;
+//     accommodationData: object;
+//     ownerData: object;
+//   };
+// }
+
+const App = () => {
+  // const dispatch = useDispatch();
+  // const step = useSelector((state: RootState) => state.form.step);
+
+  // const nextStep = () => {
+  //   if (step < 3) {
+  //     dispatch(setStep(step + 1)); // Cambiar al siguiente paso
+  //   }
+  // };
+
+  // const prevStep = () => {
+  //   if (step > 1) {
+  //     dispatch(setStep(step - 1)); // Cambiar al paso anterior
+  //   }
+  // };
 
   return (
     <>
-      <div className="mx-auto flex max-w-sm items-center gap-x-4 rounded-xl bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
+      {/* <div className="mx-auto flex max-w-sm items-center gap-x-4 rounded-xl bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
         <img className="size-12 shrink-0" src={logo} alt="ChitChat Logo" />
         <div>
           <div className="text-xl font-medium text-black dark:text-white">
@@ -38,9 +63,22 @@ function App() {
             Message
           </button>
         </div>
-      </div>
+      </div> */}
+
+      {/* <div>
+        <div>Step: {step}</div>
+        <button onClick={prevStep} disabled={step === 1}>
+          Previous
+        </button>
+        <button onClick={nextStep} disabled={step === 3}>
+          Next
+        </button>
+      </div> */}
+
+      {/* <AccommodationStep /> */}
+      <Form />
     </>
   );
-}
+};
 
 export default App;
