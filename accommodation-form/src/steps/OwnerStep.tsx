@@ -38,41 +38,43 @@ export const OwnerStep = () => {
   };
 
   return (
-    <CardStep title={"Owner"}>
-      <form>
-        <FormInput
-          type="text"
-          id="name"
-          name="name"
-          value={ownerLocalData.name}
-          handleChange={handleChange}
-          required
-        />
+    <form>
+      <CardStep title={"Owner"}>
+        <div className="flex flex-col">
+          <FormInput
+            type="text"
+            id="name"
+            name="name"
+            value={ownerLocalData.name}
+            handleChange={handleChange}
+            required
+          />
 
-        <FormInput
-          type="text"
-          id="address"
-          name="address"
-          value={ownerLocalData.address}
-          handleChange={handleChange}
-          required
-        />
+          <FormInput
+            type="text"
+            id="address"
+            name="address"
+            value={ownerLocalData.address}
+            handleChange={handleChange}
+            required
+          />
 
-        <FormInput
-          type="phone"
-          id="phone"
-          name="phone"
-          value={ownerLocalData.phone}
-          handleChange={handleChange}
-          required
-        />
+          <FormInput
+            type="phone"
+            id="phone"
+            name="phone"
+            value={ownerLocalData.phone}
+            handleChange={handleChange}
+            required
+          />
+        </div>
         <Footer
           textNext="Next"
           textPrev="Previous"
           handleNext={handleNextStep}
           handlePrev={handlePrevStep}
         />
-      </form>
-    </CardStep>
+      </CardStep>
+    </form>
   );
 };

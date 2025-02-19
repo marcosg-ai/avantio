@@ -2,6 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { CardStep } from "../components/CardStep";
 import { RootState } from "../redux/store";
 import { setStep } from "../redux/formSlice";
+import MultipleImageUploader from "../components/Accommodation/MultipleImageUploader";
+import { FormInput } from "../components/FormInput";
+import { Footer } from "../components/Footer";
 
 export const ConfirmationStep = () => {
   const dispatch = useDispatch();
@@ -12,21 +15,29 @@ export const ConfirmationStep = () => {
   };
 
   return (
-    <CardStep title={"Accommodation"}>
-      <form>
-        <div className="text-center">
-          <button
-            type="submit"
-            className="w-full py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          >
-            Enviar
-          </button>
-        </div>
-      </form>
+    <form>
+      <CardStep title={"Accommodation"}>
+        <div className="flex flex-col">
+          <FormInput
+            type="textArea"
+            id="description"
+            name="description"
+            value={"formData.description"}
+            handleChange={handlePrev}
+            required
+            wide
+          />
 
-      <button onClick={handlePrev} disabled={step === 1}>
-        Previous
-      </button>
-    </CardStep>
+          {/* Imágenes subidas */}
+          <MultipleImageUploader
+            onImageChange={(newImages: File[]) =>
+              setFormData((prev) => ({ ...prev, images: newImages }))
+            }
+          />
+        </div>
+
+        <Footer textNext="Submit" textPrev="Prev" handlePrev={handlePrev} />
+      </CardStep>
+    </form>
   );
 };

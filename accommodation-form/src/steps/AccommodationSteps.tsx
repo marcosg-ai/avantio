@@ -38,46 +38,49 @@ export const AccommodationStep = () => {
   };
 
   return (
-    <CardStep title={"Accommodation"}>
-      <form>
-        <FormInput
-          type="text"
-          id="name"
-          name="name"
-          value={formData.name}
-          handleChange={handleChange}
-          required
-        />
+    <form>
+      <CardStep title={"Accommodation"}>
+        <div className="flex flex-col">
+          <FormInput
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            handleChange={handleChange}
+            required
+          />
 
-        <FormInput
-          type="text"
-          id="address"
-          name="address"
-          value={formData.address}
-          handleChange={handleChange}
-          required
-        />
+          <FormInput
+            type="text"
+            id="address"
+            name="address"
+            value={formData.address}
+            handleChange={handleChange}
+            required
+          />
 
-        <FormInput
-          type="textArea"
-          id="description"
-          name="description"
-          value={formData.description}
-          handleChange={handleChange}
-          required
-          wide
-        />
+          <FormInput
+            type="textArea"
+            id="description"
+            name="description"
+            value={formData.description}
+            handleChange={handleChange}
+            required
+            wide
+          />
 
-        <DropDown />
+          <DropDown />
 
-        {/* Imágenes subidas */}
-        <MultipleImageUploader
-          onImageChange={(newImages: File[]) =>
-            setFormData((prev) => ({ ...prev, images: newImages }))
-          }
-        />
+          {/* Imágenes subidas */}
+          <MultipleImageUploader
+            onImageChange={(newImages: File[]) =>
+              setFormData((prev) => ({ ...prev, images: newImages }))
+            }
+          />
+        </div>
+
         <Footer textNext="Next" handleNext={handleNextStep} />
-      </form>
-    </CardStep>
+      </CardStep>
+    </form>
   );
 };
