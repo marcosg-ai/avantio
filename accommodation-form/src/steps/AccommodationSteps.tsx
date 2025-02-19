@@ -13,6 +13,7 @@ import { Footer } from "../components/Footer";
 
 export const AccommodationStep = () => {
   const step = useSelector((state: RootState) => state.form.step);
+
   const [formData, setFormData] = useState({
     name: "",
     address: "",
@@ -73,9 +74,10 @@ export const AccommodationStep = () => {
 
           {/* Imágenes subidas */}
           <MultipleImageUploader
-            onImageChange={(newImages: File[]) =>
-              setFormData((prev) => ({ ...prev, images: newImages }))
-            }
+            onImageChange={(newImages: File[]) => {
+              console.log(newImages);
+              setFormData((prev) => ({ ...prev, images: newImages }));
+            }}
           />
         </div>
 

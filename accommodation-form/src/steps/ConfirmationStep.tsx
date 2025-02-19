@@ -10,6 +10,11 @@ export const ConfirmationStep = () => {
   const dispatch = useDispatch();
   const step = useSelector((state: RootState) => state.form.step);
 
+  const accommodationData = useSelector(
+    (state: RootState) => state.form.accommodationData
+  );
+  console.log(accommodationData);
+
   const handlePrev = () => {
     dispatch(setStep(step - 1));
   };

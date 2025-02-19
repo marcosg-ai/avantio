@@ -21,6 +21,7 @@ const formSlice = createSlice({
       state.step = action.payload;
     },
     setAccommodationData(state, action: PayloadAction<object>) {
+      console.log(action);
       state.accommodationData = action.payload;
     },
     setOwnerData(state, action: PayloadAction<object>) {
