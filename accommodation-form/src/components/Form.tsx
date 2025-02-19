@@ -8,6 +8,7 @@ import { OwnerStep } from "../steps/OwnerStep";
 import { ConfirmationStep } from "../steps/ConfirmationStep";
 import { StepIndicator } from "./StepIndicator";
 import { RootState } from "../redux/store";
+import { Logo } from "./Logo";
 
 export const Form = () => {
   const step = useSelector((state: RootState) => state.form.step);
@@ -27,7 +28,7 @@ export const Form = () => {
 
   return (
     <>
-      <StepIndicator />
+      <Logo />
       {step == 1 && <AccommodationStep />}
       {step == 2 && <OwnerStep />}
       {step == 3 && <ConfirmationStep />}

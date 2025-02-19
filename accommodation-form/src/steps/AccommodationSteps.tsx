@@ -7,11 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { useState } from "react";
 import { FormInput } from "../components/FormInput";
+import { Footer } from "../components/Footer";
 
 // import { setStep } from "../redux/formSlice";
 
 export const AccommodationStep = () => {
-  const dispatch = useDispatch();
   const step = useSelector((state: RootState) => state.form.step);
   const [formData, setFormData] = useState({
     name: "",
@@ -19,6 +19,8 @@ export const AccommodationStep = () => {
     description: "",
     images: [] as File[], // Si estás usando MultipleImageUploader, puedes añadir imágenes aquí
   });
+
+  const dispatch = useDispatch();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -74,10 +76,8 @@ export const AccommodationStep = () => {
             setFormData((prev) => ({ ...prev, images: newImages }))
           }
         />
+        <Footer textNext="Next" handleNext={handleNextStep} />
       </form>
-      <div className="footer">
-        <button onClick={handleNextStep}>Next</button>
-      </div>
     </CardStep>
   );
 };

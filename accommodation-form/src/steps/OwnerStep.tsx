@@ -2,71 +2,77 @@ import { useDispatch } from "react-redux";
 import { CardStep } from "../components/CardStep";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { setStep } from "../redux/formSlice";
+import { setOwnerData, setStep } from "../redux/formSlice";
+import { Footer } from "../components/Footer";
+import { FormInput } from "../components/FormInput";
+import { useState } from "react";
 
 export const OwnerStep = () => {
   const dispatch = useDispatch();
   const step = useSelector((state: RootState) => state.form.step);
 
-  const handleNext = () => {
-    dispatch(setStep(step + 1));
+  const [ownerLocalData, setOwnerLocalData] = useState({
+    name: "",
+    address: "",
+    phone: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setOwnerLocalData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
-  const handlePrev = () => {
-    dispatch(setStep(step - 1));
+
+  const handleNextStep = () => {
+    dispatch(setStep(step + 1)); // Cambiar al siguiente paso
+    dispatch(setOwnerData(ownerLocalData));
+  };
+
+  const handlePrevStep = () => {
+    dispatch(setStep(step - 1)); // Cambiar al siguiente paso
+    dispatch(setOwnerData(ownerLocalData));
   };
 
   return (
     <CardStep title={"Owner"}>
       <form>
-        <div className="mb-4">
-          <label
-            htmlFor="name"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Nombre
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Tu nombre"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            // required
-          />
-        </div>
-
-        <div className="mb-4">
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Correo Electrónico
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Tu correo electrónico"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            // required
-          />
-        </div>
-
-        <label className="block text-sm font-medium text-gray-700">Name</label>
-        <input
+        <FormInput
+          type="text"
           id="name"
           name="name"
+          value={ownerLocalData.name}
+          handleChange={handleChange}
+          required
+        />
+
+        <FormInput
           type="text"
-          className="form-input mt-1 block w-full"
+          id="address"
+          name="address"
+          value={ownerLocalData.address}
+          handleChange={handleChange}
+          required
+        />
+
+        <FormInput
+          type="phone"
+          id="phone"
+          name="phone"
+          value={ownerLocalData.phone}
+          handleChange={handleChange}
+          required
+        />
+        <Footer
+          textNext="Next"
+          textPrev="Previous"
+          handleNext={handleNextStep}
+          handlePrev={handlePrevStep}
         />
       </form>
-
-      <div className="flex w-full items-center justify-center ">
-        <div className=" flex  justify-between w-3/4">
-          <button onClick={handlePrev}>Previous</button>
-          <button onClick={handleNext}>Next</button>
-        </div>
-      </div>
     </CardStep>
   );
 };
