@@ -1,60 +1,41 @@
-import { Logo } from "./Logo";
+import { useDispatch, useSelector } from "react-redux";
+import { setStep } from "../redux/formSlice";
+
+import { AccommodationStep } from "../steps/AccommodationSteps";
+import { OwnerStep } from "../steps/OwnerStep";
+import { ConfirmationStep } from "../steps/ConfirmationStep";
+import { StepIndicator } from "./StepIndicator";
+import { RootState } from "../redux/store";
 
 export const Form = () => {
+  const dispatch = useDispatch();
+  const step = useSelector((state: RootState) => state.form.step);
+
+  const nextStep = () => {
+    if (step < 3) {
+      dispatch(setStep(step + 1)); // Cambiar al siguiente paso
+    }
+  };
+
+  const prevStep = () => {
+    if (step > 1) {
+      dispatch(setStep(step - 1)); // Cambiar al paso anterior
+    }
+  };
+
   return (
     <>
-      <div className="flex flex-col items-center justify-between max-w-lg p-6 bg-[#ffffff] w-400 shadow-lg rounded-lg">
-        <Logo />
+      <StepIndicator />
+      {step == 1 && <AccommodationStep />}
+      {step == 2 && <OwnerStep />}
+      {step == 3 && <ConfirmationStep />}
 
-        <h2 className="text-black text-2xl font-bold text-center mb-6">
-          Formulario de Contacto
-        </h2>
-
-        <form>
-          <div className="mb-4">
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Nombre
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Tu nombre"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              required
-            />
-          </div>
-
-          <div className="mb-4">
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Correo Electrónico
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Tu correo electrónico"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              required
-            />
-          </div>
-
-          <div className="text-center">
-            <button
-              type="submit"
-              className="w-full py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            >
-              Enviar
-            </button>
-          </div>
-        </form>
-      </div>
+      <button onClick={prevStep} disabled={step === 1}>
+        Previous
+      </button>
+      <button onClick={nextStep} disabled={step === 3}>
+        Next
+      </button>
     </>
   );
 };

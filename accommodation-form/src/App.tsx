@@ -1,36 +1,9 @@
 import "./App.css";
-// import { AccommodationStep } from "./steps/AccommodationSteps";
+import "./index.css";
 
-// import logo from "./assets/react.svg";
-
-// import { useDispatch, useSelector } from "react-redux";
-// import { setStep } from "./redux/formSlice";
 import { Form } from "./components/Form";
 
-// interface RootState {
-//   form: {
-//     step: number;
-//     accommodationData: object;
-//     ownerData: object;
-//   };
-// }
-
 const App = () => {
-  // const dispatch = useDispatch();
-  // const step = useSelector((state: RootState) => state.form.step);
-
-  // const nextStep = () => {
-  //   if (step < 3) {
-  //     dispatch(setStep(step + 1)); // Cambiar al siguiente paso
-  //   }
-  // };
-
-  // const prevStep = () => {
-  //   if (step > 1) {
-  //     dispatch(setStep(step - 1)); // Cambiar al paso anterior
-  //   }
-  // };
-
   return (
     <>
       {/* <div className="mx-auto flex max-w-sm items-center gap-x-4 rounded-xl bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">

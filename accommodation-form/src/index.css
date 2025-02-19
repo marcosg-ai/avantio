@@ -1,5 +1,22 @@
 @import "tailwindcss";
 
+@theme {
+  --color-card: #ff7f51;
+  --color-focus-ring: #ff9b54;
+}
+
+@layer components {
+  .card {
+    @apply flex flex-col items-center justify-between
+           max-w-lg w-400
+           bg-white/30 backdrop-blur-md border border-white/30
+           shadow-lg p-6 rounded-lg;
+  }
+  .field {
+    @apply border block w-full p-2.5 text-sm rounded-lg border-gray-300 text-white  focus:text-black focus:ring;
+  }
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -8,15 +25,6 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
 
-  /*   
-  background: rgb(179, 156, 77);
-  background: linear-gradient(
-    90deg,
-    rgba(179, 156, 77, 1) 0%,
-    rgba(96, 119, 68, 1) 50%,
-    rgba(30, 47, 35, 1) 100%
-  ); */
-
   background: rgb(79, 0, 11);
   background: linear-gradient(
     90deg,
@@ -24,6 +32,7 @@
     rgba(206, 66, 87, 1) 50%,
     rgba(255, 155, 84, 1) 100%
   );
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -36,9 +45,4 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
 }
