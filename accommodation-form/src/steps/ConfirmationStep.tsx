@@ -16,8 +16,9 @@ export const ConfirmationStep = () => {
 
   return (
     <form>
-      <CardStep title={"Accommodation"}>
+      <CardStep title={"Confirmation"}>
         <div className="flex flex-col">
+          <h1 className="text-left font-semibold">Accomodation</h1>
           <FormInput
             type="textArea"
             id="description"
@@ -34,6 +35,18 @@ export const ConfirmationStep = () => {
               setFormData((prev) => ({ ...prev, images: newImages }))
             }
           />
+
+          <div className="mt-10 text-left">
+            <h1 className="text-left font-semibold">Owner</h1>
+            <div className="flex gap-2">
+              <p className="font-medium">Name:</p>
+              <p className="">NOMBREEE</p>
+            </div>
+            <div className="flex gap-2">
+              <p className="font-medium">Email:</p>
+              <p className="">EMAAIL</p>
+            </div>
+          </div>
         </div>
 
         <Footer textNext="Submit" textPrev="Prev" handlePrev={handlePrev} />

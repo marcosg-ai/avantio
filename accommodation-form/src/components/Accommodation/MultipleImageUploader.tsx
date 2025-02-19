@@ -2,6 +2,7 @@ import { useState } from "react";
 
 interface MultipleImageUploaderProps {
   onFileSelect: (file: File) => void;
+  setImages: () => void;
 }
 
 const MultipleImageUploader: React.FC<MultipleImageUploaderProps> = ({
