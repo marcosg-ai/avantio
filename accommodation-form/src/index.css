@@ -15,6 +15,10 @@
   .field {
     @apply border block w-full p-2.5 text-sm rounded-lg border-gray-300 text-white  focus:text-black focus:ring;
   }
+
+  .footer {
+    @apply mt-10;
+  }
 }
 
 :root {

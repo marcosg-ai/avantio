@@ -1,6 +1,16 @@
+import { useDispatch, useSelector } from "react-redux";
 import { CardStep } from "../components/CardStep";
+import { RootState } from "../redux/store";
+import { setStep } from "../redux/formSlice";
 
 export const ConfirmationStep = () => {
+  const dispatch = useDispatch();
+  const step = useSelector((state: RootState) => state.form.step);
+
+  const handlePrev = () => {
+    dispatch(setStep(step - 1));
+  };
+
   return (
     <CardStep title={"Accommodation"}>
       <form>
@@ -13,6 +23,10 @@ export const ConfirmationStep = () => {
           </button>
         </div>
       </form>
+
+      <button onClick={handlePrev} disabled={step === 1}>
+        Previous
+      </button>
     </CardStep>
   );
 };

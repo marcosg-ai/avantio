@@ -1,6 +1,13 @@
+import { ReactChildren, ReactChild } from "react";
+
 import { Logo } from "./Logo";
 
-export const CardStep = ({ title = "Step", children }) => {
+interface CardStepProps {
+  children: ReactChild | ReactChildren;
+  title: string;
+}
+
+export const CardStep = ({ title = "Step", children }: CardStepProps) => {
   return (
     <div className="card min-h-150">
       <Logo />
