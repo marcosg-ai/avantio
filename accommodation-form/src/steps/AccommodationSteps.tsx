@@ -18,6 +18,7 @@ export const AccommodationStep = () => {
     name: "",
     address: "",
     description: "",
+    location: "",
     images: [] as File[], // Si estás usando MultipleImageUploader, puedes añadir imágenes aquí
   });
 
@@ -27,6 +28,8 @@ export const AccommodationStep = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
+
+    console.log(name, value);
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -38,10 +41,27 @@ export const AccommodationStep = () => {
     dispatch(setAccommodationData(formData));
   };
 
+  const handleUploadImages = (newImages) => {
+    console.log(newImages);
+    setFormData((prev) => ({
+      ...prev,
+      images: [...formData.images, ...newImages],
+    }));
+  };
+
+  const handleDeleteImage = (index) => {
+    setFormData((prev) => ({
+      ...prev,
+      images: [...formData.images.filter((_, i) => i !== index)],
+    }));
+
+    setFormData((prev) => prev);
+  };
+
   return (
     <form>
       <CardStep title={"Accommodation"}>
-        <div className="flex flex-col">
+        <div className="flex flex-col ">
           <FormInput
             type="text"
             id="name"
@@ -70,14 +90,12 @@ export const AccommodationStep = () => {
             wide
           />
 
-          <DropDown />
+          <DropDown handleChange={handleChange} />
 
-          {/* Imágenes subidas */}
           <MultipleImageUploader
-            onImageChange={(newImages: File[]) => {
-              console.log(newImages);
-              setFormData((prev) => ({ ...prev, images: newImages }));
-            }}
+            handleUpdloadImages={handleUploadImages}
+            handleDeleteImage={handleDeleteImage}
+            images={formData.images}
           />
         </div>
 

@@ -1,14 +1,17 @@
 import { useState } from "react";
 
 interface MultipleImageUploaderProps {
-  onFileSelect: (file: File) => void;
-  setImages: () => void;
+  handleUpdloadImages: (file: [File]) => void;
+  handleDeleteImage: (index: number) => void;
+  images: Array<{ file: File; preview: string }>;
 }
 
 const MultipleImageUploader: React.FC<MultipleImageUploaderProps> = ({
-  onFileSelect,
+  handleUpdloadImages,
+  handleDeleteImage,
+  images = [],
 }) => {
-  const [images, setImages] = useState<{ file: File; preview: string }[]>([]);
+  // const [images, setImages] = useState<{ file: File; preview: string }[]>([]);
 
   // Manejar la carga de archivos
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,14 +31,15 @@ const MultipleImageUploader: React.FC<MultipleImageUploaderProps> = ({
 
       // Esperar a que todas las imágenes se procesen
       Promise.all(newImages).then((images) => {
-        setImages((prev) => [...prev, ...images]); // Agregar imágenes nuevas
+        console.log(images);
+        handleUpdloadImages(images);
       });
     }
   };
 
   // Eliminar una imagen de la previsualización
   const handleRemoveImage = (index: number) => {
-    setImages((prev) => prev.filter((_, i) => i !== index));
+    handleDeleteImage(index);
   };
 
   return (
@@ -59,21 +63,23 @@ const MultipleImageUploader: React.FC<MultipleImageUploaderProps> = ({
 
         {/* Mostrar vista previa */}
         <div className="flex gap-2 mt-3 flex-wrap">
-          {images.map((img, index) => (
-            <div key={index} className="relative">
-              <img
-                src={img.preview}
-                alt={`preview-${index}`}
-                className="w-32 h-32 object-cover border rounded"
-              />
-              <button
-                className="absolute top-0 right-0 bg-red-500 text-white text-xs px-2 py-1 rounded-full"
-                onClick={() => handleRemoveImage(index)}
-              >
-                ✕
-              </button>
-            </div>
-          ))}
+          {images?.map(
+            (img: { file: File; preview: string }, index: number) => (
+              <div key={index} className="relative">
+                <img
+                  src={img.preview}
+                  alt={`preview-${index}`}
+                  className="w-32 h-32 object-cover border rounded"
+                />
+                <button
+                  className="absolute top-0 right-0 bg-red-500 text-white text-xs px-2 py-1 rounded-full"
+                  onClick={() => handleRemoveImage(index)}
+                >
+                  ✕
+                </button>
+              </div>
+            )
+          )}
         </div>
       </div>
     </>

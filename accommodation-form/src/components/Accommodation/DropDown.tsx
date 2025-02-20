@@ -7,12 +7,17 @@ export const DropDown = ({ handleChange }) => {
       >
         Location
       </label>
-      <select id="countries" className="field" onChange={handleChange}>
+      <select
+        name="location"
+        id="countries"
+        className="field"
+        onChange={handleChange}
+      >
         <option selected>Choose a country</option>
-        <option value="US">United States</option>
-        <option value="CA">Canada</option>
-        <option value="FR">France</option>
-        <option value="DE">Germany</option>
+        <option value="United States">United States</option>
+        <option value="Canada">Canada</option>
+        <option value="France">France</option>
+        <option value="Germany">Germany</option>
       </select>
     </div>
   );
