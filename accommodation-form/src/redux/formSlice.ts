@@ -1,16 +1,17 @@
-// src/features/formSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface FormState {
   step: number;
   accommodationData: object;
   ownerData: object;
+  submition: object;
 }
 
 const initialState: FormState = {
   step: 1,
   accommodationData: {},
   ownerData: {},
+  submition: { status: undefined, open: false },
 };
 
 const formSlice = createSlice({
@@ -27,10 +28,13 @@ const formSlice = createSlice({
     setOwnerData(state, action: PayloadAction<object>) {
       state.ownerData = action.payload;
     },
+    setSubmition(state, action: PayloadAction<object>) {
+      state.submition = action.payload;
+    },
   },
 });
 
-export const { setStep, setAccommodationData, setOwnerData } =
+export const { setStep, setAccommodationData, setOwnerData, setSubmition } =
   formSlice.actions;
 
 export default formSlice.reducer;

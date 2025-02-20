@@ -2,6 +2,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import formReducer from "./formSlice";
 
+export enum Variant {
+  OK = "OK",
+  KO = "KO",
+}
+
 export interface RootState {
   form: {
     step: number;
@@ -16,6 +21,10 @@ export interface RootState {
       name: string;
       email: string;
       phone: string;
+    };
+    submition: {
+      status: Variant;
+      open: boolean;
     };
   };
 }
