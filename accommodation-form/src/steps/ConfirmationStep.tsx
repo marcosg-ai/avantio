@@ -15,8 +15,6 @@ export const ConfirmationStep = () => {
 
   const ownerData = useSelector((state: RootState) => state.form.ownerData);
 
-  console.log(accommodationData);
-
   const handlePrev = () => {
     dispatch(setStep(step - 1));
   };
@@ -29,42 +27,37 @@ export const ConfirmationStep = () => {
             <h1 className="text-left  text-2xl font-semibold ">
               Accommodation
             </h1>
-            <div className="flex gap-2">
-              <p>Name:</p>
-              <p>{accommodationData.name}</p>
-            </div>
-            <div className="flex gap-2">
-              <p>Address:</p>
-              <p>{accommodationData.address}</p>
-            </div>
 
-            <div className="flex gap-2">
-              <p>Description:</p>
-              <p>{accommodationData.description}</p>
-            </div>
-
-            <div className="flex gap-2">
-              <p>Location:</p>
-              <p>{accommodationData.location}</p>
-            </div>
+            {Object.keys(accommodationData).map((field, key) => (
+              <>
+                <div key={key} className="flex gap-2">
+                  <p className="font-semibold">
+                    {String(field).charAt(0).toUpperCase() +
+                      String(field).slice(1)}
+                    :
+                  </p>
+                  <p>{accommodationData[field]}</p>
+                </div>
+              </>
+            ))}
 
             <MultipleImageUploader images={accommodationData.images} />
           </div>
 
           <div className="text-left flex flex-col gap-2">
             <h1 className="text-left  text-2xl font-semibold ">Owner</h1>
-            <div className="flex gap-2">
-              <p>Name:</p>
-              <p>{ownerData.name}</p>
-            </div>
-            <div className="flex gap-2">
-              <p>Email:</p>
-              <p>{ownerData.email}</p>
-            </div>
-            <div className="flex gap-2">
-              <p>Phone:</p>
-              <p>{ownerData.phone}</p>
-            </div>
+            {Object.keys(ownerData).map((field, key) => (
+              <>
+                <div key={key} className="flex gap-2">
+                  <p className="font-semibold">
+                    {String(field).charAt(0).toUpperCase() +
+                      String(field).slice(1)}
+                    :
+                  </p>
+                  <p>{ownerData[field]}</p>
+                </div>
+              </>
+            ))}
           </div>
         </div>
 
