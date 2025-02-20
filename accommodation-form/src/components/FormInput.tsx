@@ -6,8 +6,9 @@ interface FormInputProps {
   handleChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
-  required: boolean;
+  required?: boolean;
   wide?: boolean;
+  error: string;
 }
 
 export const FormInput = ({
@@ -18,6 +19,7 @@ export const FormInput = ({
   handleChange,
   required,
   wide,
+  error,
 }: FormInputProps) => {
   return (
     <div className="mb-4 ">
@@ -49,6 +51,15 @@ export const FormInput = ({
           focus:outline-none focus:ring-2 focus:ring-indigo-500"
           required={required}
         />
+      )}
+
+      {error && (
+        <p className="text-red-700 text-left">
+          {String(name).charAt(0).toUpperCase() +
+            String(name).slice(1) +
+            " " +
+            error}
+        </p>
       )}
     </div>
   );

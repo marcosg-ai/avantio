@@ -45,7 +45,7 @@ export const ConfirmationStep = () => {
 
             <div className="flex gap-2">
               <p>Location:</p>
-              <p>{accommodationData.address}</p>
+              <p>{accommodationData.location}</p>
             </div>
 
             <MultipleImageUploader images={accommodationData.images} />

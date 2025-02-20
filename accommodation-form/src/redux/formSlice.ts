@@ -9,8 +9,18 @@ export interface FormState {
 
 const initialState: FormState = {
   step: 1,
-  accommodationData: {},
-  ownerData: {},
+  accommodationData: {
+    name: "",
+    address: "",
+    description: "",
+    location: "",
+    images: [] as Array<{ file: File; preview: string }>,
+  },
+  ownerData: {
+    name: "",
+    email: "",
+    phone: "",
+  },
   submition: { status: undefined, open: false },
 };
 

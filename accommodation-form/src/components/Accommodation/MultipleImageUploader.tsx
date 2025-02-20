@@ -4,12 +4,14 @@ interface MultipleImageUploaderProps {
   ) => void | undefined;
   handleDeleteImage?: (index: number) => void | undefined;
   images: Array<{ file: File; preview: string }>;
+  error?: string;
 }
 
 const MultipleImageUploader: React.FC<MultipleImageUploaderProps> = ({
   handleUpdloadImages,
   handleDeleteImage,
   images = [],
+  error,
 }) => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -86,6 +88,8 @@ const MultipleImageUploader: React.FC<MultipleImageUploaderProps> = ({
             )
           )}
         </div>
+
+        <p className="text-red-700 text-left">{error}</p>
       </div>
     </>
   );

@@ -27,7 +27,6 @@ export const Footer = ({
           )}
         </div>
         <button
-          type="submit"
           onClick={handleNext}
           className="text-white bg-orange-500 w-25 h-8 rounded-xl border border-orange-500 hover:bg-transparent hover:text-white hover:text-orange-500 border-2 transition"
         >

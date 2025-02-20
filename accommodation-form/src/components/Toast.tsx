@@ -13,7 +13,6 @@ export const Toast = () => {
     dispatch(setSubmition({ status: "KO", open: false }));
   };
 
-  console.log(submition);
   return (
     open && (
       <div
