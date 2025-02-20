@@ -7,7 +7,7 @@ interface FormInputProps {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
   required: boolean;
-  wide: boolean;
+  wide?: boolean;
 }
 
 export const FormInput = ({

@@ -1,6 +1,6 @@
 interface FooterProps {
   textNext: string;
-  textPrev: string;
+  textPrev?: string;
   handleNext?: () => void;
   handlePrev?: () => void;
 }

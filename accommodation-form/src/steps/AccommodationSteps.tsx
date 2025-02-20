@@ -19,7 +19,7 @@ export const AccommodationStep = () => {
     address: "",
     description: "",
     location: "",
-    images: [] as File[], // Si estás usando MultipleImageUploader, puedes añadir imágenes aquí
+    images: [] as Array<{ file: File; preview: string }>, // Si estás usando MultipleImageUploader, puedes añadir imágenes aquí
   });
 
   const dispatch = useDispatch();
@@ -28,8 +28,6 @@ export const AccommodationStep = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-
-    console.log(name, value);
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -41,21 +39,20 @@ export const AccommodationStep = () => {
     dispatch(setAccommodationData(formData));
   };
 
-  const handleUploadImages = (newImages) => {
-    console.log(newImages);
+  const handleUploadImages = (
+    newImages: Array<{ file: File; preview: string }>
+  ) => {
     setFormData((prev) => ({
       ...prev,
       images: [...formData.images, ...newImages],
     }));
   };
 
-  const handleDeleteImage = (index) => {
+  const handleDeleteImage = (index: number) => {
     setFormData((prev) => ({
       ...prev,
       images: [...formData.images.filter((_, i) => i !== index)],
     }));
-
-    setFormData((prev) => prev);
   };
 
   return (

@@ -11,9 +11,11 @@ export const OwnerStep = () => {
   const dispatch = useDispatch();
   const step = useSelector((state: RootState) => state.form.step);
 
-  const [ownerLocalData, setOwnerLocalData] = useState({
+  const [ownerLocalData, setOwnerLocalData] = useState<
+    RootState["form"]["ownerData"]
+  >({
     name: "",
-    address: "",
+    email: "",
     phone: "",
   });
 
@@ -52,9 +54,9 @@ export const OwnerStep = () => {
 
           <FormInput
             type="text"
-            id="address"
-            name="address"
-            value={ownerLocalData.address}
+            id="email"
+            name="email"
+            value={ownerLocalData.email}
             handleChange={handleChange}
             required
           />
