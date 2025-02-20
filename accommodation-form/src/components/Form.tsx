@@ -12,9 +12,18 @@ export const Form = () => {
   return (
     <>
       <Logo />
-      {step == 1 && <AccommodationStep />}
-      {step == 2 && <OwnerStep />}
-      {step == 3 && <ConfirmationStep />}
+
+      <div className="relative overflow-hidden">
+        <div className={`step ${step === 1 ? "step-active" : ""}`}>
+          {step === 1 && <AccommodationStep />}
+        </div>
+        <div className={`step ${step === 2 ? "step-active" : ""}`}>
+          {step === 2 && <OwnerStep />}
+        </div>
+        <div className={`step ${step === 3 ? "step-active" : ""}`}>
+          {step === 3 && <ConfirmationStep />}
+        </div>
+      </div>
     </>
   );
 };
